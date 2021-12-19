@@ -65,9 +65,9 @@ pkgEnv$label_en = list(
  mail_automatic = "This message was generated automatically.",
  # reset
  reset_mail_h = "password reset code",
- reset_mail_1 = "In order to reset your password the necessary code has been generated and is available below. Paste it into the application and reset your password.",
+ reset_mail_1 = "In order to reset your password the necessary code has been generated and is available below. Please copy and paste it into the application in order to reset your password.",
  reset_mail_2 = "Reset code: ",
- reset_mail_3 = "If you didn't generate that code, check if anyone unauthorized has access to your e-mail inbox. If not, disregard this message.",
+ reset_mail_3 = "If you didn't request a password reset, please disregard this message.",
  # register
  reg_mail_h = "confirmation of registration",
  reg_mail_1 = "Thank you for registering an account in our application.",
