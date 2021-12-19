@@ -36,8 +36,8 @@ pkgEnv$label_en = list(
  login_succ_b = "User is logged in successfully!",
  # reset
  id_nfound_reset = "Specified user ID not found in our database. Check if you typed it correctly. If the account wasn't created yet, please register a new account.",
- reset_code_send_t = "Reset code has been sent",
- reset_code_send_b = "Reset code has been sent to the e-mail that you provided during registration. It will be valid for the next 24 hours to reset your password.",
+ reset_code_send_t = "Reset code sent",
+ reset_code_send_b = "A reset code has been sent to the e-mail that you provided during registration. It will be valid for the next 24 hours.",
  reset_code_nfound_t = "Reset code not found",
  reset_code_nfound_b = "There is no active password reset code for specified account. The code is only active for 24 hours after generation. Check if the account ID in the box above has been typed properly or if the code was generated within 24 hours.",
  reset_code_ncorr_t = "Reset code is not correct",
