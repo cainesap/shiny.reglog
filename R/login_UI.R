@@ -63,13 +63,14 @@ password_reset_UI <- function(id = "login_system",
   ns <- NS(id)
 
   div(
-    h1(txt$get("reset_ui_1")),
+    #h1(txt$get("reset_ui_1")),
     p(txt$get("reset_ui_2")),
     textInput(ns("resetpass_user_ID"),
               label = txt$get("user_id")
               ),
     actionButton(ns("resetpass_send"),
                  label = txt$get("reset_bttn_1")),
+    br(),
     p(txt$get("reset_ui_3")),
     textInput(ns("resetpass_code"),
               label = txt$get("reset_ui_4")
