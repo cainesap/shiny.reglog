@@ -24,7 +24,7 @@ login_UI <- function(id = "login_system",
 
   txt <- use_language(lang)
   
-  div(h1("Login"),
+  div(
       textInput(ns("login_user_id"),
                 label = txt$get("user_id")
                 ),
