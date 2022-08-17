@@ -7,7 +7,8 @@
   user_db <- dplyr::ungroup(user_db)
 
   if(!credentials_pass_hashed){
-    user_db$user_pass <- sapply(user_db$user_pass, scrypt::hashPassword)
+    #user_db$user_pass <- sapply(user_db$user_pass, scrypt::hashPassword)
+    user_db$user_pass <- sapply(user_db$user_pass, sodium::password_store)
   }
 
   return(user_db)
