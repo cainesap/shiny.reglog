@@ -11,7 +11,7 @@ Description: Package creates UI modules for Login, Register and Password Reset b
 Imports:
 	shiny,
 	dplyr,
-	scrypt,
+	sodium,
 	R6,
 	DBI,
 	googlesheets4,
