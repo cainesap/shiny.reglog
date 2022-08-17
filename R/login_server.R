@@ -126,7 +126,7 @@
 #' 
 #' ## Security
 #' 
-#' - Both passwords and reset codes are hashed with the help of 'scrypt' package for the extra security
+#' - Both passwords and reset codes are hashed with the help of 'scrypt' package for the extra security; AUG'22 using 'sodium' instead due to scrypt install failures
 #' - gmailr mail_method seems to be more secure if you intend to use 'gmail' account to send emails. 'emayili' is suggested only when using other mailboxes.
 #'
 #' @seealso [login_UI()] for the login window in UI
@@ -254,7 +254,8 @@ login_server <- function(id = "login_system",
             
           )
           
-        } else if(scrypt::verifyPassword(as.character(temp_data$user_pass[1]),
+#        } else if(scrypt::verifyPassword(as.character(temp_data$user_pass[1]),
+         } else if(sodium::password_verify(temp_data$user_pass[1],
                                          input$password_login) == F){
           
           showModal(
@@ -368,7 +369,8 @@ login_server <- function(id = "login_system",
           
           temp_row <- dplyr::tibble("timestamp" = Sys.time(),
                                     "user_id" = input$resetpass_user_ID,
-                                    "reset_code" = scrypt::hashPassword(reset_code))
+                                    #"reset_code" = scrypt::hashPassword(reset_code))
+                                    "reset_code" = sodium::password_store(reset_code))
           
           reset_data_init <- rbind(session$userData$reactive_db$reset_db, temp_row)
           reset_data_arranged <- dplyr::arrange(reset_data_init, dplyr::desc(timestamp))
@@ -412,7 +414,8 @@ login_server <- function(id = "login_system",
                         footer = modalButton("OK"))
             
           )
-        } else if(scrypt::verifyPassword(temp_data$reset_code, input$resetpass_code) == F){
+#        } else if(scrypt::verifyPassword(temp_data$reset_code, input$resetpass_code) == F){
+        } else if(sodium::password_verify(temp_data$reset_code, input$resetpass_code) == F){
           
           showModal(
             
@@ -472,7 +475,8 @@ login_server <- function(id = "login_system",
           temp_row <- dplyr::tibble(timestamp = Sys.time(),
                                     user_id = input$resetpass_user_ID,
                                     user_mail = as.character(mail),
-                                    user_pass = scrypt::hashPassword(input$resetpass1))
+                                    #user_pass = scrypt::hashPassword(input$resetpass1))
+                                    user_pass = sodium::password_store(input$resetpass1))
           
           temp_data <- rbind(session$userData$reactive_db$user_db, temp_row)
           temp_data_arranged <- dplyr::arrange(temp_data, dplyr::desc(timestamp))
@@ -590,7 +594,8 @@ login_server <- function(id = "login_system",
           temp_row <- dplyr::tibble(timestamp = Sys.time(),
                                     user_id = input$register_user_ID,
                                     user_mail = input$register_email,
-                                    user_pass = scrypt::hashPassword(input$register_pass1))
+                                    #user_pass = scrypt::hashPassword(input$register_pass1))
+                                    user_pass = sodium::password_store(input$register_pass1))
           
           session$userData$reactive_db$user_db <- rbind(session$userData$reactive_db$user_db, temp_row)
           
